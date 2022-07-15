@@ -9,23 +9,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        body{
+        body {
             background-image: url("anhnen.gif");
         }
     </style>
 </head>
 <body style="background-color: black">
 
-<div style="position: absolute ; width: 80%; height: 80%; display: flex;align-items: center; justify-content: center" id="clickAn" >
-    <img id="myImage"src="./anhdep.png" style=" opacity: 1;display: flex;align-items: center;justify-content: center">
+<div style="position: absolute ; width: 80%; height: 80%; display: flex;align-items: center; justify-content: center"
+     id="clickAn">
+    <img id="myImage" src="./anhdep.png" style=" opacity: 1;display: flex;align-items: center;justify-content: center">
     <div id="endGameDiv"
-        style="position: absolute;border-radius: 50px ;width: 500px; height: 300px;background-color: white; display: none;align-items: center;justify-content: center">
+         style="position: absolute;border-radius: 50px ;width: 500px; height: 300px;background-color: white; display: none;align-items: center;justify-content: center">
         <div>
-            <h1 id="scoreI" style="color: dodgerblue;text-align: center;font-size: 50px; font-family: 'Press Start 2P'">0</h1>
+            <h1 id="scoreI" style="color: dodgerblue;text-align: center;font-size: 50px; font-family: 'Press Start 2P'">
+                0</h1>
             <p style=" font-family: 'Press Start 2P';text-align: center;color: dodgerblue"><i>score</i></p>
             <h1 style=" font-family: 'Press Start 2P';color: dodgerblue ; text-align: center"> END GAME </h1>
             <br>
-            <h6 style=" font-family: 'Press Start 2P';color: dodgerblue;text-align: center"> CLICK START TO PLAY AGAIN </h6>
+            <h6 style=" font-family: 'Press Start 2P';color: dodgerblue;text-align: center"> CLICK START TO PLAY
+                AGAIN </h6>
         </div>
     </div>
 </div>
@@ -43,18 +46,30 @@
                     <td style="text-align: center">
                         <span style="color: dodgerblue;font-size: 30px; vertical-align: top ; font-family: 'Press Start 2P'"><i>Score </i></span>
                         <br>
-                        <span id="scoreId" style=" font-family: 'Press Start 2P';color: dodgerblue;font-size: 40px;vertical-align: center">0</span>
+                        <span id="scoreId"
+                              style=" font-family: 'Press Start 2P';color: dodgerblue;font-size: 40px;vertical-align: center">0</span>
                     </td>
                 </tr>
                 <tr>
-                    <td style=" font-family: 'Press Start 2P';height: 300px;vertical-align: top ">
-                        <p >Use keyboard:</p><p> A W S D </p><p> to run </p></p>
-                        <p style="vertical-align: top">SCORE BOARD</p>
+                    <td style=" font-family: 'Press Start 2P';height: 350px;vertical-align: top ">
+                        <h3 style="text-align:center;">RANK</h3>
+                            <p id="top1"style="text-align: center"></p>
+                            <br>
+                            <p id="top2"style="text-align: center"></p>
+                            <br>
+                            <p id="top3"style="text-align: center"></p>
+                            <br>
+                            <p id="top4"style="text-align: center"></p>
+                            <br>
+                            <p id="top5"style="text-align: center"></p>
+                        <br>
+
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: center">
-                        <button style="font-family: 'Press Start 2P';width: 150px;height: 50px" type="button" class="btn btn-primary btn-lg"
+                        <button style="font-family: 'Press Start 2P';width: 150px;height: 50px" type="button"
+                                class="btn btn-primary btn-lg"
                                 onclick="starGame()">Start
                         </button>
                     </td>

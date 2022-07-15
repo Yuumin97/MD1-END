@@ -1,6 +1,6 @@
 let canvas = document.querySelector('canvas');
 let c = canvas.getContext('2d')
-canvas.width = innerWidth * 0.84;
+canvas.width = innerWidth * 0.85;
 canvas.height = innerHeight * 0.97;
 //------- nhan vat --------------
 class Player {
@@ -162,19 +162,24 @@ window.addEventListener('keyup', ({key}) => {
             break
     }
 })
+// ------------------
 
-// --------------------------------
+
+
+
+
 
 
 let animationId
 let score = 0
-
+let scoreArr = [];
 //---- check va cham va vong lap ------------------
 function animate() {
     animationId = requestAnimationFrame(animate);
     c.fillStyle = 'rgba(0,0,0,0.1)'
     c.fillRect(0, 0, canvas.width, canvas.height)
     player.update();
+
     projectiles.forEach((projectile, index) => {
         projectile.update()
         if (projectile.x + projectile.radius < 0 ||
@@ -193,7 +198,14 @@ function animate() {
             let audio1 = new Audio('endgame.mp3')
             audio1.play()
             isEnd = true
-
+            scoreArr.push(score)
+            scoreArr.sort(function(a, b){return b - a})
+            console.log(scoreArr)
+            document.getElementById('top1').innerHTML = scoreArr[0]
+            document.getElementById('top2').innerHTML = scoreArr[1]
+            document.getElementById('top3').innerHTML = scoreArr[2]
+            document.getElementById('top4').innerHTML = scoreArr[3]
+            document.getElementById('top5').innerHTML = scoreArr[4]
             document.getElementById('clickAn').style.display ='flex'
             document.getElementById('endGameDiv').style.display = 'flex'
             cancelAnimationFrame(animationId)
@@ -219,7 +231,6 @@ function animate() {
                         projectiles.splice(projectileIndex, 1)
                     }, 0)
                 }
-
             }
         })
     })
@@ -251,7 +262,8 @@ function animate() {
 
 }
 
-//-------------------------------------
+//---------------------------------
+
 
 // event click-------------
 
@@ -298,15 +310,3 @@ function starGame() {
     animate();
 
 }
-function startText() {
-    // c.fillStyle = 'green';
-    // c.font = '50px Mekon';
-    // document.getElementById("myImg").src = "./anhdep.png"
-    // c.fillText('WELCOME TO SUPER BALL SHOOTER', canvas.width / 2 - 500, canvas.height / 2);
-}
-
-window.onload = startText();
-//------------------
-
-
-spawnEnemy()
