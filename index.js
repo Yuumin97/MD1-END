@@ -279,7 +279,7 @@ addEventListener('click', (event) => {
 //-----------------------------
 //---- khoi tao nut button va start game
 function starGame() {
-
+    document.getElementById('endGameDiv').style.opacity = '0'
     cancelAnimationFrame(animationId)
     console.log(enemies)
     enemies = []
@@ -290,7 +290,7 @@ function starGame() {
     document.getElementById('scoreId').innerHTML = '0'
     score = 0
     document.getElementById('myImage').style.opacity = '0'
-    document.getElementById('endGameDiv').style.opacity = '0'
+
     animate();
 
 }
