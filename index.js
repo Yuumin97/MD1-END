@@ -193,7 +193,9 @@ function animate() {
             let audio1 = new Audio('endgame.mp3')
             audio1.play()
             isEnd = true
-            document.getElementById('endGameDiv').style.opacity = '1'
+
+            document.getElementById('clickAn').style.display ='flex'
+            document.getElementById('endGameDiv').style.display = 'flex'
             cancelAnimationFrame(animationId)
         }
         // ----- check score và check va cham dan vs enemy-----
@@ -279,8 +281,10 @@ addEventListener('click', (event) => {
 //-----------------------------
 //---- khoi tao nut button va start game
 function starGame() {
-    document.getElementById('endGameDiv').style.opacity = '0'
+
     cancelAnimationFrame(animationId)
+    document.getElementById('endGameDiv').style.display = 'none'
+    document.getElementById('clickAn').style.display ='none'
     console.log(enemies)
     enemies = []
     player.x = x
@@ -289,7 +293,7 @@ function starGame() {
     document.getElementById('scoreI').innerHTML = '0'
     document.getElementById('scoreId').innerHTML = '0'
     score = 0
-    document.getElementById('myImage').style.opacity = '0'
+    document.getElementById('myImage').style.display = 'none'
 
     animate();
 
