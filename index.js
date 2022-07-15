@@ -310,3 +310,4 @@ function starGame() {
     animate();
 
 }
+spawnEnemy();
