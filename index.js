@@ -1,6 +1,6 @@
 let canvas = document.querySelector('canvas');
 let c = canvas.getContext('2d')
-canvas.width = innerWidth * 0.85;
+canvas.width = innerWidth * 0.8;
 canvas.height = innerHeight * 0.97;
 //------- nhan vat --------------
 class Player {
@@ -220,7 +220,10 @@ function animate() {
                     scoreI.innerHTML = score
                     enemy.radius -= 10
                     setTimeout(() => {
+                        let audio2 = new Audio('boom1.mp3')
+                        audio2.play()
                         projectiles.splice(projectileIndex, 1)
+
                     }, 0)
                 } else {
                     score += 250
@@ -228,6 +231,8 @@ function animate() {
                     scoreI.innerHTML = score
                     setTimeout(() => {
                         enemies.splice(index, 1)
+                        let audio3 = new Audio('boom2.mp3')
+                        audio3.play()
                         projectiles.splice(projectileIndex, 1)
                     }, 0)
                 }
