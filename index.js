@@ -241,7 +241,7 @@ function animate() {
     }
 
 
-    if (player.x + player.velocity.x < player.radius || player.y + player.velocity.y < player.radius || player.x + player.velocity.x > canvas.width || player.y + player.velocity.y > canvas.height) {
+    if (player.x + player.velocity.x * 2 < player.radius || player.y + player.velocity.y * 2 < player.radius || player.x + player.velocity.x * 2> canvas.width || player.y + player.velocity.y * 2 > canvas.height) {
 
         player.velocity.x = 0
         player.velocity.y = 0
