@@ -2,6 +2,7 @@ let canvas = document.querySelector('canvas');
 let c = canvas.getContext('2d')
 canvas.width = innerWidth * 0.8;
 canvas.height = innerHeight * 0.97;
+
 //------- nhan vat --------------
 class Player {
     constructor({x, y, radius, clor, velocity = {x: 0, y: 0}}) {
@@ -10,11 +11,14 @@ class Player {
         this.radius = radius
         this.clor = clor
         this.velocity = velocity
+        this.live = 3
+        this.opacity = 1
     }
 
     draw() {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
+        c.globalAlpha= this.opacity
         c.fillStyle = this.clor
         c.fill();
     }
@@ -27,9 +31,11 @@ class Player {
     }
 
 }
+
 //------------------------------------------
 let isEnd = true
-// ----- ham goi vat can -------------------
+
+// ----- ham goi dan ban -------------------
 class Projectile {
     constructor(x, y, radius, clor, veloctiry) {
         this.x = x;
@@ -53,6 +59,7 @@ class Projectile {
         this.y = this.y + this.veloctiry.y;
     }
 }
+
 //----------------------------
 
 //------- dan ban -------
@@ -79,6 +86,7 @@ class Enemy {
 
     }
 }
+
 // -----------------------
 let x = canvas.width / 2;
 let y = canvas.height / 2;
@@ -90,6 +98,7 @@ let player = new Player({
 });
 let projectiles = [];
 let enemies = []
+
 // ------------ bong " vat can" ---------------
 function spawnEnemy() {
     setInterval(() => {
@@ -113,6 +122,7 @@ function spawnEnemy() {
         enemies.push(new Enemy(x, y, radius, color, velocity))
     }, 400)
 }
+
 //---------------------------------------------
 // ----di chuyen ban phim ---------------
 let keys = {
@@ -165,14 +175,10 @@ window.addEventListener('keyup', ({key}) => {
 // ------------------
 
 
-
-
-
-
-
 let animationId
 let score = 0
 let scoreArr = [];
+
 //---- check va cham va vong lap ------------------
 function animate() {
     animationId = requestAnimationFrame(animate);
@@ -195,20 +201,38 @@ function animate() {
         enemy.update()
         let dist = Math.hypot(player.x - enemy.x, player.y - enemy.y)
         if (dist - enemy.radius - player.radius < 1) {
-            let audio1 = new Audio('endgame.mp3')
-            audio1.play()
-            isEnd = true
-            scoreArr.push(score)
-            scoreArr.sort(function(a, b){return b - a})
-            console.log(scoreArr)
-            document.getElementById('top1').innerHTML = scoreArr[0]
-            document.getElementById('top2').innerHTML = scoreArr[1]
-            document.getElementById('top3').innerHTML = scoreArr[2]
-            document.getElementById('top4').innerHTML = scoreArr[3]
-            document.getElementById('top5').innerHTML = scoreArr[4]
-            document.getElementById('clickAn').style.display ='flex'
-            document.getElementById('endGameDiv').style.display = 'flex'
-            cancelAnimationFrame(animationId)
+            console.log(player.live)
+
+            if (player.live > 0) {
+                gsap.to(player,{
+                    opacity: 0,
+                    yoyo: true,
+                    repeat: 2
+                })
+                player.live--;
+                starGame()
+            } else {
+                let audio1 = new Audio('endgame.mp3')
+                audio1.play()
+                isEnd = true
+                scoreArr.push(score)
+                scoreArr.sort(function (a, b) {
+                    return b - a
+                })
+                if (player.live == 0) {
+                    player.live = 3
+                }
+                console.log(scoreArr)
+                document.getElementById('top1').innerHTML = "Top 1 " + scoreArr[0]
+                document.getElementById('top2').innerHTML = "Top 2 " + scoreArr[1]
+                document.getElementById('top3').innerHTML = "Top 3 " + scoreArr[2]
+                document.getElementById('top4').innerHTML = "Top 4 " + scoreArr[3]
+                document.getElementById('top5').innerHTML = "Top 5 " + scoreArr[4]
+                document.getElementById('clickAn').style.display = 'flex'
+                document.getElementById('endGameDiv').style.display = 'flex'
+                cancelAnimationFrame(animationId)
+            }
+            //// ------ tí cho thêm cái hiệu ứng nhấp nháy nuawxlaf đc
         }
         // ----- check score và check va cham dan vs enemy-----
         projectiles.forEach((projectile, projectileIndex) => {
@@ -259,7 +283,7 @@ function animate() {
     }
 
 
-    if (player.x + player.velocity.x * 2 < player.radius || player.y + player.velocity.y * 2 < player.radius || player.x + player.velocity.x * 2> canvas.width || player.y + player.velocity.y * 2 > canvas.height) {
+    if (player.x + player.velocity.x * 2 < player.radius || player.y + player.velocity.y * 2 < player.radius || player.x + player.velocity.x * 2 > canvas.width || player.y + player.velocity.y * 2 > canvas.height) {
 
         player.velocity.x = 0
         player.velocity.y = 0
@@ -301,7 +325,7 @@ function starGame() {
 
     cancelAnimationFrame(animationId)
     document.getElementById('endGameDiv').style.display = 'none'
-    document.getElementById('clickAn').style.display ='none'
+    document.getElementById('clickAn').style.display = 'none'
     console.log(enemies)
     enemies = []
     player.x = x
@@ -315,4 +339,5 @@ function starGame() {
     animate();
 
 }
+
 spawnEnemy();
