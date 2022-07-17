@@ -197,6 +197,12 @@ function animate() {
             }, 0)
         }
     })
+    let live = 'Live: '
+    for (let i = 0; i < player.live; i++) {
+        live += '* '
+    }
+    document.getElementById('livePlayer').innerHTML = live;
+    console.log(document.getElementById('livePlayer').innerHTML)
     enemies.forEach((enemy, index) => {
         enemy.update()
         let dist = Math.hypot(player.x - enemy.x, player.y - enemy.y)
@@ -288,6 +294,7 @@ function animate() {
         player.velocity.y = 0
     }
 
+
 }
 
 //---------------------------------
@@ -330,9 +337,12 @@ function starGame() {
     player.y = y
     isEnd = false
     document.getElementById('myImage').style.display = 'none'
+    document.getElementById('livePlayer').style.display = 'block'
     animate();
 
 }
+
+
 
 
 spawnEnemy();
