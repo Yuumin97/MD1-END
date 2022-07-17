@@ -204,11 +204,6 @@ function animate() {
             console.log(player.live)
 
             if (player.live > 0) {
-                gsap.to(player,{
-                    opacity: 0,
-                    yoyo: true,
-                    repeat: 2
-                })
                 player.live--;
                 starGame()
             } else {
@@ -220,6 +215,10 @@ function animate() {
                     return b - a
                 })
                 if (player.live == 0) {
+                    document.getElementById('scoreI').innerHTML = score
+                    document.getElementById('scoreId').innerHTML = '0'
+                    // score = 0
+                    enemies = []
                     player.live = 3
                 }
                 console.log(scoreArr)
@@ -327,17 +326,13 @@ function starGame() {
     document.getElementById('endGameDiv').style.display = 'none'
     document.getElementById('clickAn').style.display = 'none'
     console.log(enemies)
-    enemies = []
     player.x = x
     player.y = y
     isEnd = false
-    document.getElementById('scoreI').innerHTML = '0'
-    document.getElementById('scoreId').innerHTML = '0'
-    score = 0
     document.getElementById('myImage').style.display = 'none'
-
     animate();
 
 }
+
 
 spawnEnemy();
