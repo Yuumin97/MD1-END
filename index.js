@@ -224,11 +224,12 @@ function animate() {
                 console.log(scoreArr)
                 if (player.live == 0) {
                     document.getElementById('scoreI').innerHTML = score
-                    document.getElementById('scoreId').innerHTML = '0'
-                    score = 0
+                    document.getElementById('scoreId').innerHTML = score
+
                     enemies = []
                     player.live = 2
                 }
+                score = 0
                 document.getElementById('top1').innerHTML = "Top 1 " + scoreArr[0]
                 document.getElementById('top2').innerHTML = "Top 2 " + scoreArr[1]
                 document.getElementById('top3').innerHTML = "Top 3 " + scoreArr[2]
