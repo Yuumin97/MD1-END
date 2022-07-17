@@ -11,7 +11,7 @@ class Player {
         this.radius = radius
         this.clor = clor
         this.velocity = velocity
-        this.live = 3
+        this.live = 2
         this.opacity = 1
     }
 
@@ -198,7 +198,7 @@ function animate() {
         }
     })
     let live = 'Live: '
-    for (let i = 0; i < player.live; i++) {
+    for (let i = -1; i < player.live; i++) {
         live += '* '
     }
     document.getElementById('livePlayer').innerHTML = live;
@@ -211,6 +211,8 @@ function animate() {
 
             if (player.live > 0) {
                 player.live--;
+                let audio4 = new Audio('live.mp3')
+                audio4.play()
                 starGame()
             } else {
                 let audio1 = new Audio('endgame.mp3')
@@ -218,16 +220,15 @@ function animate() {
                 isEnd = true
                 scoreArr.push(score)
                 scoreArr.sort(function (a, b) {
-                    return b - a
-                })
+                    return b - a})
+                console.log(scoreArr)
                 if (player.live == 0) {
                     document.getElementById('scoreI').innerHTML = score
                     document.getElementById('scoreId').innerHTML = '0'
-                    // score = 0
+                    score = 0
                     enemies = []
-                    player.live = 3
+                    player.live = 2
                 }
-                console.log(scoreArr)
                 document.getElementById('top1').innerHTML = "Top 1 " + scoreArr[0]
                 document.getElementById('top2').innerHTML = "Top 2 " + scoreArr[1]
                 document.getElementById('top3').innerHTML = "Top 3 " + scoreArr[2]
@@ -236,6 +237,7 @@ function animate() {
                 document.getElementById('clickAn').style.display = 'flex'
                 document.getElementById('endGameDiv').style.display = 'flex'
                 cancelAnimationFrame(animationId)
+
             }
             //// ------ tí cho thêm cái hiệu ứng nhấp nháy nuawxlaf đc
         }
