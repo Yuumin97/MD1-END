@@ -225,7 +225,7 @@ function animate() {
                 if (player.live == 0) {
                     document.getElementById('scoreI').innerHTML = score
                     document.getElementById('scoreId').innerHTML = '0'
-                    enemies = []
+
                     player.live = 2
                 }
                 score = 0
@@ -332,6 +332,7 @@ addEventListener('click', (event) => {
 function starGame() {
 
     cancelAnimationFrame(animationId)
+    enemies = []
     document.getElementById('endGameDiv').style.display = 'none'
     document.getElementById('clickAn').style.display = 'none'
     console.log(enemies)
